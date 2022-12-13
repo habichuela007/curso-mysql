@@ -7,3 +7,4 @@ SELECT client, YEAR(NOW()) - YEAR(birthdate) FROM clients limit 10;
 SELECT year(birthdate) , gender FROM clients WHERE gender = 'M';
 /*Crean tablas 'temporales' que no existían hace un momento*/
 
+SELECT * FROM clients WHERE name LIKE '%Saave%'
