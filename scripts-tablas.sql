@@ -55,6 +55,17 @@ CREATE TABLE IF NOT EXISTS bio_inf_pedidos_compras (
 	estado ENUM('Pendiente','Realizado') NOT NULL
 )
 
+Ver de manera mas legible:
+SELECT * FROM clients where client_id = 4\Gv 
+
+por el campo UNIQUE:
+ON DUPLICATE KEY IGNORE ALL (Va a ignorar errores al ejecutar, nunca utilizar..!!)
+ON DUPLICATE KEY UPDATE email = '' 
+ON DUPLICATE KEY UPDATE Active = '' 
+
+
+
+
 
 
 SELECT CODIGO_EMPRESA,ORGANIZACION_COMPRAS,FECHA_PEDIDO,SERIE_NUMERACION,NUMERO_PEDIDO,CODIGO_ALMACEN,D_CODIGO_ALMACEN,CODIGO_PROVEEDOR,D_CODIGO_PROVEEDOR,PERSONA_PEDIDO,NUMERO_EXPEDIENTE,D_NUMERO_EXPEDIENTE,D_ORGANIZACION_COMPRAS,STATUS_AUTORIZACION,TIPO_PEDIDO,STATUS_CIERRE,CODIGO_DIVISA,NUMERO_DIRECCION,CLIENTE_TARIFA,D_CLIENTE_TARIFA,TIPO_PORTES,FECHA_CONFIRM,FORMA_PAGO,USUARIO_ALTA,ROWID,ANULADO,FECHA_REVISION,STATUS_APROBADO,ID_DIGITAL,CONFIRM_EDI,FECHA_CONFIRM_EDI FROM (SELECT C.* ,(select pl.cliente_tarifa from pedidos_compras_lin pl where pl.serie_numeracion = c.serie_numeracion and pl.numero_pedido = c.numero_pedido and pl.organizacion_compras = c.organizacion_compras and pl.numero_linea = 1 and pl.codigo_empresa = c.codigo_empresa) CLIENTE_TARIFA,(select c.nombre from clientes c where c.codigo_rapido = (select pl.cliente_tarifa from pedidos_compras_lin pl where pl.serie_numeracion = c.serie_numeracion and pl.numero_pedido = c.numero_pedido and pl.organizacion_compras = c.organizacion_compras and pl.numero_linea = 1 and pl.codigo_empresa = c.codigo_empresa)) D_CLIENTE_TARIFA,(SELECT a.nombre FROM almacenes a WHERE a.almacen = c.codigo_almacen AND a.codigo_empresa = c.codigo_empresa) D_CODIGO_ALMACEN,(SELECT nombre FROM proveedores WHERE codigo_rapido = c.codigo_proveedor AND codigo_empresa = c.codigo_empresa) D_CODIGO_PROVEEDOR,(SELECT a.descripcion
