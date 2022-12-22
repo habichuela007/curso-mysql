@@ -8,3 +8,9 @@ SELECT year(birthdate) , gender FROM clients WHERE gender = 'M';
 /*Crean tablas 'temporales' que no existían hace un momento*/
 
 SELECT * FROM clients WHERE name LIKE '%Saave%'
+
+SELECT name, email, YEAR(NOW()) - YEAR(birthdate) AS edad,
+    gender
+    FROM clients
+    WHERE gender = 'F'
+        AND name LIKE '%Lop%';
