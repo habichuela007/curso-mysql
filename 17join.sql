@@ -106,3 +106,5 @@ WHERE ejercicio = 2023 AND d_cliente LIKE '%Ã‘%'
 GROUP BY d_cliente;
 
 UPDATE vtas_budget SET d_cliente = REPLACE(d_cliente,'Ã‘','Ñ');
+
+update books set price = 30.23 where book_id = 117;

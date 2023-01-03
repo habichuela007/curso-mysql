@@ -1,0 +1,1 @@
+SELECT DISTINCT nationality FROM authors;
