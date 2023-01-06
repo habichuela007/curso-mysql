@@ -45,3 +45,20 @@ FROM authors
 WHERE nationality NOT IN('RUS','AUT')
 GROUP BY nationality
 ORDER BY c_authors DESC, nationality ASC;
+
+/*desviación estándar STDDEV es una de las funciones muy cercanas al procesador ed la base de datos*/
+
+SELECT title, price FROM books ORDER BY price DESC limit 10;
+
+SELECT AVG(price) AS prom, STDDEV(price) AS std
+FROM books;
+
+SELECT nationality, 
+    COUNT(book_id) AS libros,
+    AVG(price) AS prom,
+    STDDEV(price) AS std
+FROM books AS b
+JOIN authors AS a
+    ON a.author_id = b.author_id
+GROUP BY nationality
+ORDER BY libros DESC;
